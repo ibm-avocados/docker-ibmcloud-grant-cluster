@@ -5,13 +5,13 @@ sleep 20
 ibmcloud login --apikey $1 -r "us-south"
 sleep 20
 curl -u "$8:$9" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
-$1=${API_KEY}
-$2=${EVENT_NAME}
-$3=${PASSWORD}
-$4=${ADMIN_PAGE_ENABLED}
-$5=${USERS_PER_CLUSTER}
-$6=${FILTER_TAG}
-$7=${ACCESS_GROUP_ID}
+API_KEY=$1
+EVENT_NAME=$2
+PASSWORD=$3
+ADMIN_PAGE_ENABLED=$4
+USERS_PER_CLUSTER=$5
+FILTER_TAG=$6
+ACCESS_GROUP_ID=$7
 unzip master.zip
 echo "---" > grant-cluster-master/manifest.yaml
 echo "applications:" >> grant-cluster-master/manifest.yaml
@@ -20,15 +20,15 @@ echo "  memory: 256M" >> grant-cluster-master/manifest.yaml
 echo "  instances: 1" >> grant-cluster-master/manifest.yaml
 cd grant-cluster-master
 ibmcloud cf push --no-start -f manifest.yaml
-ibmcloud cf set-env $APP_HOSTNAME ACCOUNT $ACCOUNT
-ibmcloud cf set-env $APP_HOSTNAME APIKEY $APIKEY
-ibmcloud cf set-env $APP_HOSTNAME PASSWORD $PASSWORD
-ibmcloud cf set-env $APP_HOSTNAME IDENTIFIER $IDENTIFIER
-ibmcloud cf set-env $APP_HOSTNAME ADMIN_PAGE_ENABLED $ADMIN_PAGE_ENABLED
-ibmcloud cf set-env $APP_HOSTNAME USERS_PER_CLUSTER $USERS_PER_CLUSTER
-ibmcloud cf set-env $APP_HOSTNAME FILTER_TAG $FILTER_TAG
-ibmcloud cf set-env $APP_HOSTNAME ACCESS_GROUP_ID $ACCESS_GROUP_ID
-ibmcloud cf start $APP_HOSTNAME
+ibmcloud cf set-env ${EVENT_NAME} ACCOUNT $ACCOUNT
+ibmcloud cf set-env ${EVENT_NAME} APIKEY $APIKEY
+ibmcloud cf set-env ${EVENT_NAME} PASSWORD $PASSWORD
+ibmcloud cf set-env ${EVENT_NAME} IDENTIFIER "iam_id"
+ibmcloud cf set-env ${EVENT_NAME} ADMIN_PAGE_ENABLED $ADMIN_PAGE_ENABLED
+ibmcloud cf set-env ${EVENT_NAME} USERS_PER_CLUSTER $USERS_PER_CLUSTER
+ibmcloud cf set-env ${EVENT_NAME} FILTER_TAG $FILTER_TAG
+ibmcloud cf set-env ${EVENT_NAME} ACCESS_GROUP_ID $ACCESS_GROUP_ID
+ibmcloud cf start ${EVENT_NAME}
 
 echo "#"
 echo "#"
