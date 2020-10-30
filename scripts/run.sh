@@ -5,13 +5,13 @@ sleep 20
 ibmcloud login --apikey $1 -r "us-south"
 sleep 20
 curl -u "$8:$9" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
-$1=${API_KEY}
-$2=${EVENT_NAME}
-$3=${PASSWORD}
-$4=${ADMIN_PAGE_ENABLED}
-$5=${USERS_PER_CLUSTER}
-$6=${FILTER_TAG}
-$7=${ACCESS_GROUP_ID}
+${API_KEY}=$1
+${EVENT_NAME}=$2
+${PASSWORD}=$3
+${ADMIN_PAGE_ENABLED}=$4
+${USERS_PER_CLUSTER}=$5
+${FILTER_TAG}=$6
+${ACCESS_GROUP_ID}=$7
 unzip master.zip
 echo "---" > grant-cluster-master/manifest.yaml
 echo "applications:" >> grant-cluster-master/manifest.yaml
