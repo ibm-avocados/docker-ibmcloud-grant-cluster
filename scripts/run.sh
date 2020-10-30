@@ -20,15 +20,15 @@ echo "  memory: 256M" >> grant-cluster-master/manifest.yaml
 echo "  instances: 1" >> grant-cluster-master/manifest.yaml
 cd grant-cluster-master
 ibmcloud cf push --no-start -f manifest.yaml
-ibmcloud cf set-env $APP_HOSTNAME ACCOUNT $ACCOUNT
-ibmcloud cf set-env $APP_HOSTNAME APIKEY $APIKEY
-ibmcloud cf set-env $APP_HOSTNAME PASSWORD $PASSWORD
-ibmcloud cf set-env $APP_HOSTNAME IDENTIFIER $IDENTIFIER
-ibmcloud cf set-env $APP_HOSTNAME ADMIN_PAGE_ENABLED $ADMIN_PAGE_ENABLED
-ibmcloud cf set-env $APP_HOSTNAME USERS_PER_CLUSTER $USERS_PER_CLUSTER
-ibmcloud cf set-env $APP_HOSTNAME FILTER_TAG $FILTER_TAG
-ibmcloud cf set-env $APP_HOSTNAME ACCESS_GROUP_ID $ACCESS_GROUP_ID
-ibmcloud cf start $APP_HOSTNAME
+ibmcloud cf set-env ${EVENT_NAME} ACCOUNT $ACCOUNT
+ibmcloud cf set-env ${EVENT_NAME} APIKEY $APIKEY
+ibmcloud cf set-env ${EVENT_NAME} PASSWORD $PASSWORD
+ibmcloud cf set-env ${EVENT_NAME} IDENTIFIER "iam_id"
+ibmcloud cf set-env ${EVENT_NAME} ADMIN_PAGE_ENABLED $ADMIN_PAGE_ENABLED
+ibmcloud cf set-env ${EVENT_NAME} USERS_PER_CLUSTER $USERS_PER_CLUSTER
+ibmcloud cf set-env ${EVENT_NAME} FILTER_TAG $FILTER_TAG
+ibmcloud cf set-env ${EVENT_NAME} ACCESS_GROUP_ID $ACCESS_GROUP_ID
+ibmcloud cf start ${EVENT_NAME}
 
 echo "#"
 echo "#"
