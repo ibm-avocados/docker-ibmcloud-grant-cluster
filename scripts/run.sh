@@ -4,6 +4,8 @@ ibmcloud plugin install -f kubernetes-service
 sleep 20
 ibmcloud login --apikey $1 -r "us-south"
 sleep 20
+ibmcloud target --cf
+sleep 20
 curl -u "$8:$9" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
 API_KEY=$1
 EVENT_NAME=$2
