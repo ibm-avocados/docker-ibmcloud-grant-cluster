@@ -17,6 +17,7 @@ ADMIN_PAGE_ENABLED=$4
 USERS_PER_CLUSTER=$5
 FILTER_TAG=$6
 ACCESS_GROUP_ID=$7
+ACCOUNT=$10
 unzip master.zip
 echo "---" > grant-cluster-master/manifest.yaml
 echo "applications:" >> grant-cluster-master/manifest.yaml
@@ -25,8 +26,8 @@ echo "  memory: 256M" >> grant-cluster-master/manifest.yaml
 echo "  instances: 1" >> grant-cluster-master/manifest.yaml
 cd grant-cluster-master
 ibmcloud cf push --no-start -f manifest.yaml
-ibmcloud cf set-env ${EVENT_NAME} ACCOUNT ${ACCESS_GROUP_ID}
-ibmcloud cf set-env ${EVENT_NAME} APIKEY ${APIKEY}
+ibmcloud cf set-env ${EVENT_NAME} ACCOUNT ${ACCOUNT}
+ibmcloud cf set-env ${EVENT_NAME} APIKEY ${API_KEY}
 ibmcloud cf set-env ${EVENT_NAME} PASSWORD ${PASSWORD}
 ibmcloud cf set-env ${EVENT_NAME} IDENTIFIER "iam_id"
 ibmcloud cf set-env ${EVENT_NAME} ADMIN_PAGE_ENABLED ${ADMIN_PAGE_ENABLED}
