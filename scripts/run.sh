@@ -7,6 +7,8 @@ ibmcloud cf install -f
 ibmcloud login --apikey $1 -r "us-south"
 sleep 20
 ibmcloud target --cf-api https://api.us-south.cf.cloud.ibm.com
+ibmcloud cf target -o 'advowork@us.ibm.com'
+ibmcloud cf target -s 'dev'
 sleep 20
 curl -u "$8:$9" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
 API_KEY=$1
