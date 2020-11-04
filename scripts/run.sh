@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ibmcloud plugin install -f kubernetes-service
-sleep 20
+ibmcloud cf install -f
 ibmcloud login --apikey $1 -r "us-south"
 sleep 20
 ibmcloud target --cf
