@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eox
+
 ibmcloud plugin install -f kubernetes-service
 ibmcloud cf install -f
 ibmcloud login --apikey $1 -r "us-south"
