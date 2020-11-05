@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eox
+set -eo
 
 ibmcloud plugin install -f kubernetes-service
 ibmcloud cf install -f
