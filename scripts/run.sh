@@ -9,15 +9,14 @@ sleep 20
 ibmcloud target --cf-api https://api.us-south.cf.cloud.ibm.com
 ibmcloud target -o "advowork@us.ibm.com" -s "dev"
 sleep 20
-curl -u "$8:$9" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
+curl -u "$7:$8" -L -o master.zip https://github.ibm.com/rvennam/grant-cluster/archive/master.zip
 API_KEY=$1
 EVENT_NAME=$2
 PASSWORD=$3
-ADMIN_PAGE_ENABLED=$4
-USERS_PER_CLUSTER=$5
-FILTER_TAG=$6
-ACCESS_GROUP_ID=$7
-ACCOUNT=$10
+USERS_PER_CLUSTER=$4
+FILTER_TAG=$5
+ACCESS_GROUP_ID=$6
+ACCOUNT=$9
 unzip master.zip
 echo "---" > grant-cluster-master/manifest.yaml
 echo "applications:" >> grant-cluster-master/manifest.yaml
@@ -30,7 +29,7 @@ ibmcloud cf set-env ${EVENT_NAME} ACCOUNT ${ACCOUNT}
 ibmcloud cf set-env ${EVENT_NAME} APIKEY ${API_KEY}
 ibmcloud cf set-env ${EVENT_NAME} PASSWORD ${PASSWORD}
 ibmcloud cf set-env ${EVENT_NAME} IDENTIFIER "iam_id"
-ibmcloud cf set-env ${EVENT_NAME} ADMIN_PAGE_ENABLED ${ADMIN_PAGE_ENABLED}
+ibmcloud cf set-env ${EVENT_NAME} ADMIN_PAGE_ENABLED false
 ibmcloud cf set-env ${EVENT_NAME} USERS_PER_CLUSTER ${USERS_PER_CLUSTER}
 ibmcloud cf set-env ${EVENT_NAME} FILTER_TAG ${FILTER_TAG}
 ibmcloud cf set-env ${EVENT_NAME} ACCESS_GROUP_ID ${ACCESS_GROUP_ID}
